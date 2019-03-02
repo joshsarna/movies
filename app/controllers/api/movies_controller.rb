@@ -3,4 +3,9 @@ class Api::MoviesController < ApplicationController
     @movies = Movie.all
     render 'index.json.jbuilder'
   end
+
+  def show
+    @movie = Movie.find_by(id: params[:id])
+    render 'show.json.jbuilder'
+  end
 end
