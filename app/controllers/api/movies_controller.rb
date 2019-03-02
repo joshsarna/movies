@@ -17,4 +17,12 @@ class Api::MoviesController < ApplicationController
     @movie = Movie.find_by(id: params[:id])
     render 'show.json.jbuilder'
   end
+
+  def update
+    @movie = Movie.find_by(id: params[:id])
+    @movie.title = params[:title] || @movie.title
+    @movie.runtime = params[:runtime] || @movie.runtime
+    @movie.save
+    render 'show.json.jbuilder'
+  end
 end
