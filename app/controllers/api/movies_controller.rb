@@ -14,8 +14,13 @@ class Api::MoviesController < ApplicationController
   end
 
   def show
-    @movie = Movie.find_by(id: params[:id])
-    render 'show.json.jbuilder'
+    begin
+       @movie = Movie.find(params[:id])
+    rescue
+      render json: {message: "Oops, we couldn't find that movie"}
+    else
+      render 'show.json.jbuilder'
+    end
   end
 
   def update
